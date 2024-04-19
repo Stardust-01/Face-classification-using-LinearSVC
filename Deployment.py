@@ -37,7 +37,7 @@ def perform_cnn(image):
     
     # Remove the batch dimension and move the features to the CPU
     features = features.squeeze(0).cpu().numpy()
-    features = np.array(features)
+    features = np.array(features),reshape(1,2048)
     return features
 
 # Function to perform PCA on the extracted features
