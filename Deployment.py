@@ -37,7 +37,8 @@ def perform_cnn(image):
 
     features = features.view(features.size(0), -1)
     # Remove the batch dimension and move the features to the CPU
-    features = features.squeeze(0).view(-1).unsqueeze(0).cpu().numpy()
+    features = features.squeeze(0).view(-1).unsqueeze(0).cpu().numpy()   
+    features = np.repeat(features, 2, axis=0)
 
     return np.array(features)
 
@@ -70,8 +71,6 @@ if uploaded_file is not None:
 
     # Perform CNN
     cnn_features = perform_cnn(image)
-
-    print(cnn_features.shape)
 
     # Perform PCA
     pca_features = perform_pca(cnn_features)
