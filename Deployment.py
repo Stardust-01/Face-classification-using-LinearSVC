@@ -37,15 +37,15 @@ def perform_cnn(image):
     
     # Remove the batch dimension and move the features to the CPU
     features = features.squeeze(0).cpu().numpy()
-    features = np.array(features),reshape(1,2048)
-    return features
+
+    features = features.flatten()
+    
+    return np.array(features)
 
 # Function to perform PCA on the extracted features
 def perform_pca(features):
     # Log the dimensions of the input features
     st.write("Input features dimensions:", features.shape)
-
-    st.write("Type of input features:", type(features))
     
     # Check if features are empty or have unexpected dimensions
     if features.size == 0 or features.ndim != 2:
