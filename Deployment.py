@@ -38,7 +38,7 @@ def perform_cnn(image):
     features = features.view(features.size(0), -1)
     # Remove the batch dimension and move the features to the CPU
     features = features.squeeze(0).view(-1).unsqueeze(0).cpu().numpy()   
-    features = np.repeat(features, 2, axis=0)
+    features = np.repeat(features, 10, axis=0)
 
     return np.array(features)
 
