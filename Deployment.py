@@ -34,9 +34,10 @@ def perform_cnn(image):
     # Extract features
     with torch.no_grad():
         features = resnet(image)
-    
+
+    features = features.view(features.size(0), -1)
     # Remove the batch dimension and move the features to the CPU
-    features = features.squeeze(0).cpu().numpy()
+    features = features.squeeze(0).view(-1).unsqueeze(0).cpu().numpy()
 
     return np.array(features)
 
