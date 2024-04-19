@@ -44,6 +44,8 @@ def perform_cnn(image):
 def perform_pca(features):
     # Log the dimensions of the input features
     st.write("Input features dimensions:", features.shape)
+
+    st.write("Type of input features:", type(features))
     
     # Check if features are empty or have unexpected dimensions
     if features.size == 0 or features.ndim != 2:
