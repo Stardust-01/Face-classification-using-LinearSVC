@@ -38,27 +38,9 @@ def perform_cnn(image):
     features = features.view(features.size(0), -1)
     # Remove the batch dimension and move the features to the CPU
     features = features.squeeze(0).view(-1).unsqueeze(0).cpu().numpy()   
-    features = np.repeat(features, 10, axis=0)
-
+    
     return np.array(features)
 
-# Function to perform PCA on the extracted features
-def perform_pca(features):
-    # Log the dimensions of the input features
-    st.write("Input features dimensions:", features.shape)
-    
-    # Check if features are empty or have unexpected dimensions
-    if features.size == 0 or features.ndim != 2:
-        st.error("Invalid input features for PCA")
-        return None
-    
-    pca = PCA(n_components=128)
-    pca_features = pca.fit_transform(features)
-    
-    # Log the dimensions of the PCA-transformed features
-    st.write("PCA-transformed features dimensions:", pca_features.shape)
-    
-    return pca_features
 
 # Streamlit UI
 st.title("Image Classification by using CNN and LinearSVC")
@@ -72,8 +54,11 @@ if uploaded_file is not None:
     # Perform CNN
     cnn_features = perform_cnn(image)
 
+    # Load the pca model
+    pca_model = joblib.load('pca_model.pkl') 
+
     # Perform PCA
-    pca_features = perform_pca(cnn_features)
+    pca_features = pca_model.transform(cnn_features)
 
     # Load the Linear SVC model
     model = joblib.load('linear_svc_128_features.pkl') 
