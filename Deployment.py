@@ -55,7 +55,7 @@ if uploaded_file is not None:
     cnn_features = perform_cnn(image)
 
     # Load the pca model
-    pca_model = joblib.load('pca_model.pkl') 
+    pca_model = joblib.load('deployment_pca_model.joblib') 
 
     # Perform PCA
     pca_features = pca_model.transform(cnn_features)
