@@ -71,6 +71,8 @@ if uploaded_file is not None:
     # Perform CNN
     cnn_features = perform_cnn(image)
 
+    print(cnn_features.shape)
+
     # Perform PCA
     pca_features = perform_pca(cnn_features)
 
