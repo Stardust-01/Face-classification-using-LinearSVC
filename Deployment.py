@@ -41,8 +41,20 @@ def perform_cnn(image):
 
 # Function to perform PCA on the extracted features
 def perform_pca(features):
-    pca = PCA(n_components=128)  # Example: PCA with 128 components
-    pca_features = pca.fit_transform(features.reshape(1, -1))  # Reshape features if needed
+    # Log the dimensions of the input features
+    st.write("Input features dimensions:", features.shape)
+    
+    # Check if features are empty or have unexpected dimensions
+    if features.size == 0 or features.ndim != 2:
+        st.error("Invalid input features for PCA")
+        return None
+    
+    pca = PCA(n_components=128)
+    pca_features = pca.fit_transform(features)
+    
+    # Log the dimensions of the PCA-transformed features
+    st.write("PCA-transformed features dimensions:", pca_features.shape)
+    
     return pca_features
 
 # Streamlit UI
