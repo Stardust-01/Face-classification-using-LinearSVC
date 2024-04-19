@@ -58,7 +58,7 @@ def perform_pca(features):
     return pca_features
 
 # Streamlit UI
-st.title("Image Classification with CNN and PCA")
+st.title("Image Classification by using CNN and LinearSVC")
 uploaded_file = st.file_uploader("Upload an image(250*250)...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
