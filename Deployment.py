@@ -2,7 +2,6 @@ import streamlit as st
 import numpy as np
 from PIL import Image
 from sklearn.decomposition import PCA
-import matplotlib.pyplot as plt
 import io
 import torch
 import torch.nn as nn
@@ -24,8 +23,7 @@ resnet.eval()
 def perform_cnn(image):
     # Load and preprocess the image
     preprocess = transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
+        transforms.Resize((250, 250)),  # Resize to 250x250
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
     ])
@@ -50,6 +48,9 @@ if uploaded_file is not None:
     # Display uploaded image
     image = Image.open(uploaded_file)
     st.image(image, caption='Uploaded Image', use_column_width=True)
+
+    # Resize image to 250x250
+    image = image.resize((250, 250))
 
     # Perform CNN
     cnn_features = perform_cnn(image)
