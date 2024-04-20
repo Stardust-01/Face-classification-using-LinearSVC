@@ -6,3 +6,5 @@
 * Resnet CNN model is used for feature extraction.
 * 128 features are selected after PCA.
 * Model is deployed online using streamlit sharing.
+* You can download the LFW dataset [here](http://vis-www.cs.umass.edu/lfw/lfw-funneled.tgz).
+
